@@ -13,4 +13,5 @@ new CdkNetowrkStack(app, "CdkNetowrkStack", {
     vpc_cidr: config.vpc.vpc_cidr
 })
 // Creating TGW
-new CdkTgwStack(app, "CdkTgwStack")
+new CdkTgwStack(app, "CdkTgwStack",
+    { env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION } })
