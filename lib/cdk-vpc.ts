@@ -1,19 +1,19 @@
 import { Stack, StackProps, CfnOutput } from "aws-cdk-lib";
 import { Construct } from "constructs"
-
+import { aws_ec2 as ec2 } from "aws-cdk-lib";
 import {
     FlowLogDestination,
     FlowLogTrafficType,
     SubnetType,
-    Vpc
+    Vpc,
 } from "aws-cdk-lib/aws-ec2"
+import {StringParameter,ParameterType} from "aws-cdk-lib/aws-ssm";
 
 interface StackConfig extends StackProps {
     readonly vpc_cidr: string
 }
 
 const test_cdk_vpc:string = "test-cdk-vpc"
-const testCdkVpcOutput:string = "testCdkVpcOutput"
 
 export class CdkNetowrkStack extends Stack {
     public readonly vpc: Vpc
@@ -24,12 +24,9 @@ export class CdkNetowrkStack extends Stack {
         // This is actual infomration to make vpc
         this.vpc = new Vpc(this, test_cdk_vpc, {
             cidr: props.vpc_cidr,
-            maxAzs: 3,
+            maxAzs: 2,
             enableDnsHostnames: true,
             enableDnsSupport: true,
-            flowLogs: {
-                Reject: { destination: FlowLogDestination.toCloudWatchLogs(), trafficType: FlowLogTrafficType.REJECT }
-            },
             subnetConfiguration: [
                 {
                     cidrMask: 24,
@@ -43,15 +40,11 @@ export class CdkNetowrkStack extends Stack {
                 }
             ]
         })
-        new CfnOutput(this, testCdkVpcOutput,
-            {
-                value: this.vpc.vpcId,
-                description: "This vpc is created by CDK.",
-                exportName: testCdkVpcOutput
-            }
-        )
+        // create an SSM parameters which store export VPC ID
+        new StringParameter(this, 'VPCID', {
+            parameterName: test_cdk_vpc,
+            stringValue: this.vpc.vpcId,
+            type: ParameterType.STRING,
+        })
     }
-
-
-
 }
