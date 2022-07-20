@@ -27,11 +27,9 @@ export class CdkTgwStack extends Stack {
     public readonly tgwRt: CfnTransitGatewayRouteTable
     public readonly tgwAttach:CfnTransitGatewayAttachment
     public readonly tgwRtAssociate:CfnTransitGatewayRouteTableAssociation
-    public readonly tgwRtAssociateSaitmiki:CfnTransitGatewayRouteTableAssociation
     public readonly tgwRtPropagation:CfnTransitGatewayRouteTablePropagation
     public readonly tgwRtPropagationSaitmiki:CfnTransitGatewayRouteTablePropagation
     public readonly tgwRoute:CfnTransitGatewayRoute
-    public readonly tgwRouteSaitmiki:CfnTransitGatewayRoute
 
     constructor(scope: Construct, id: string,props: StackProps) {
         super(scope, id,props)
