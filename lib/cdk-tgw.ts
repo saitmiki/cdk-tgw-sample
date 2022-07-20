@@ -13,7 +13,6 @@ import {
     SubnetType
 } from "aws-cdk-lib/aws-ec2";
 import {StringParameter} from "aws-cdk-lib/aws-ssm";
-import { Console } from "console";
 
 const testCdkTgw:string = "testCdkTgw"
 const testCdkTgwAttach:string = "testCdkTgwAttach"

@@ -42,5 +42,31 @@
         ]
       }
     ]
+  },
+  "ssm:account=368882759171:parameterName=test-cdk-vpc-networkfirewall:region=us-east-1": "vpc-06c4c4bc5966fd8bf",
+  "vpc-provider:account=368882759171:filter.vpc-id=vpc-06c4c4bc5966fd8bf:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-06c4c4bc5966fd8bf",
+    "vpcCidrBlock": "10.50.0.0/16",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Private",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0d94078adbf15a8b4",
+            "cidr": "10.50.0.0/24",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-06ec0b4f134ddb6cb"
+          },
+          {
+            "subnetId": "subnet-0b3e4f23d01d828b4",
+            "cidr": "10.50.1.0/24",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-0fd47edf26336a7c9"
+          }
+        ]
+      }
+    ]
   }
 }
